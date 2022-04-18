@@ -3,6 +3,7 @@ import './App.css';
 import { ReactComment } from '../Other/HTMLComment';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { SearchResults } from '../SearchResults/SearchResults';
+import { Playlist } from '../Playlist/Playlist';
 
 
 //Was first thing in header:
@@ -16,7 +17,7 @@ function App() {
         <SearchBar />
         <div className="App-playlist">
           <SearchResults />
-          <ReactComment text='Add a Playlist component' />
+          <Playlist />
         </div>
       </div>
     </div>
