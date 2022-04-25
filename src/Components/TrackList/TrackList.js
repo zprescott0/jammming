@@ -20,7 +20,7 @@ export class TrackList extends React.Component {
             key={x.id}/>);
         }
 
-        console.log(tracks);
+        //console.log(tracks);
 
         return (
             <div className="TrackList">
