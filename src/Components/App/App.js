@@ -5,7 +5,6 @@ import { SearchBar } from '../SearchBar/SearchBar';
 import { SearchResults } from '../SearchResults/SearchResults';
 import { Playlist } from '../Playlist/Playlist';
 
-
 class App extends React.Component {
   constructor (props) {
     super(props);
@@ -49,11 +48,32 @@ class App extends React.Component {
         id: 1005
       }
     ]};
+
+    this.addTrack = this.addTrack.bind(this);
+    this.testAddTrack = this.testAddTrack.bind(this);
+  }
+
+  addTrack (track) {
+    if (this.state.playlistTracks.find(
+      playlistTrack => playlistTrack.id === track.id))
+    {
+      console.log('Track is present.');
+    }
+    else {
+      console.log('Track is NOT present.');
+    }
+
+    //console.log(this.state.)
+  }
+
+  testAddTrack () {
+    this.addTrack({ id: 1003 });
   }
 
   render() {
     return (
       <div>
+        <button onClick={this.testAddTrack}>TestButton</button>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
           <SearchBar />
