@@ -54,20 +54,30 @@ class App extends React.Component {
   }
 
   addTrack (track) {
+
     if (this.state.playlistTracks.find(
       playlistTrack => playlistTrack.id === track.id))
     {
-      console.log('Track is present.');
+      //Track is already present.
+      return;
     }
     else {
-      console.log('Track is NOT present.');
+      //Track is NOT present.
+      let tempPlaylistTracks = this.state.playlistTracks;
+      tempPlaylistTracks.push(track);
+      console.log(tempPlaylistTracks);
+
+      this.setState({ playlistTracks: tempPlaylistTracks });
     }
 
     //console.log(this.state.)
   }
 
   testAddTrack () {
-    this.addTrack({ id: 1003 });
+    this.addTrack({ TrackName: 'Track Name 7',
+      TrackArtist: 'Track Artist 7',
+      TrackAlbum: 'Track Album 7', 
+      id: 1006 });
   }
 
   render() {
