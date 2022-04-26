@@ -16,7 +16,7 @@ export class TrackList extends React.Component {
             formattedTracks = tracks.map(x => <Track trackName={x.TrackName}
             trackArtist={x.TrackArtist}
             trackAlbum={x.TrackAlbum}
-            isRemoval={false}
+            isRemoval={this.props.isRemoval}
             key={x.id}/>);
         }
 
