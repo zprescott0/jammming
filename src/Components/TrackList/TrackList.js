@@ -17,7 +17,7 @@ export class TrackList extends React.Component {
             trackArtist={x.TrackArtist}
             trackAlbum={x.TrackAlbum}
             isRemoval={this.props.isRemoval}
-            key={x.id}
+            id={x.id}
             onAdd={this.props.onAdd} />);
         }
 

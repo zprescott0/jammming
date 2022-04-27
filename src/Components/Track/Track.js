@@ -3,6 +3,22 @@ import React from 'react';
 import './Track.css';
 
 export class Track extends React.Component {
+    constructor (props) {
+        super(props);
+        this.addTrack = this.addTrack.bind(this);
+    }
+    
+    //Adds a track from the SearchResults to the Playlist
+    //using the method defined in App.js.
+    addTrack () {
+        this.props.onAdd( {
+            TrackName: this.props.trackName,
+            TrackArtist: this.props.trackArtist,
+            TrackAlbum: this.props.trackAlbum,
+            id: this.props.id
+        } );
+    }
+    
     //Returns a button element with either '+' or '-' depending
     //on isRemoval property.
     renderAction () {
@@ -11,7 +27,8 @@ export class Track extends React.Component {
             action = '-';
         }
         else {
-            action = '+';
+            return <button className="Track-action"
+            onClick={this.addTrack}>+</button>;
         }
 
         return <button className="Track-action">{action}</button>;
