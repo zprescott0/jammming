@@ -50,8 +50,12 @@ class App extends React.Component {
     ]};
 
     this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
+    this.testRemoveTrack = this.testRemoveTrack.bind(this);
   }
 
+  //************************************************ */
+  //Adds a track to the playlist from the search results.
   addTrack (track) {
 
     if (this.state.playlistTracks.find(
@@ -69,9 +73,33 @@ class App extends React.Component {
     }
   }
 
+  //******************************************* */
+  //Removes a track from the playlist.
+  removeTrack (track) {
+    const updatedTracks = [];
+
+    //Loop to separate the track from the playlist
+    for (let playlistTrack of this.state.playlistTracks) {
+      if (playlistTrack.id !== track.id)
+        updatedTracks.push(playlistTrack);
+    }
+
+    this.setState({ playlistTracks: updatedTracks });
+    console.log(updatedTracks);
+  }
+
+  //**************************************************** */
+  //A function for testing the removeTrack method. Should
+  //be removed later.
+  testRemoveTrack () {
+    this.removeTrack({ id: 1000 });
+  }
+
+  //************************************************* */
   render() {
     return (
       <div>
+        <button onClick={this.testRemoveTrack}>Test button</button>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
           <SearchBar />
@@ -80,7 +108,7 @@ class App extends React.Component {
             onAdd={this.addTrack} />
             <Playlist playlistName={this.state.playlistName}
             playlistTracks={this.state.playlistTracks}
-            />
+            onRemove={this.removeTrack} />
           </div>
         </div>
       </div>

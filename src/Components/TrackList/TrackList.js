@@ -21,6 +21,7 @@ export class TrackList extends React.Component {
             isRemoval={this.props.isRemoval}
             id={x.id}
             onAdd={this.props.onAdd}
+            onRemove={this.props.onRemove}
             key={num++} />);
         }
 
