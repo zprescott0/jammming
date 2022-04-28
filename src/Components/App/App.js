@@ -50,7 +50,6 @@ class App extends React.Component {
     ]};
 
     this.addTrack = this.addTrack.bind(this);
-    this.testAddTrack = this.testAddTrack.bind(this);
   }
 
   addTrack (track) {
@@ -65,25 +64,14 @@ class App extends React.Component {
       //Track is NOT present.
       let tempPlaylistTracks = this.state.playlistTracks;
       tempPlaylistTracks.push(track);
-      console.log(tempPlaylistTracks);
 
       this.setState({ playlistTracks: tempPlaylistTracks });
     }
-
-    //console.log(this.state.)
-  }
-
-  testAddTrack () {
-    this.addTrack({ TrackName: 'Track Name 7',
-      TrackArtist: 'Track Artist 7',
-      TrackAlbum: 'Track Album 7', 
-      id: 1006 });
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.testAddTrack}>TestButton</button>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
           <SearchBar />
