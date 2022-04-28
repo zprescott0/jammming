@@ -54,6 +54,7 @@ class App extends React.Component {
     this.testRemoveTrack = this.testRemoveTrack.bind(this);
   }
 
+  //************************************************ */
   //Adds a track to the playlist from the search results.
   addTrack (track) {
 
@@ -72,19 +73,29 @@ class App extends React.Component {
     }
   }
 
+  //******************************************* */
   //Removes a track from the playlist.
   removeTrack (track) {
+    const updatedTracks = [];
+
+    //Loop to separate the track from the playlist
     for (let playlistTrack of this.state.playlistTracks) {
-      console.log(playlistTrack.id);
+      if (playlistTrack.id !== track.id)
+        updatedTracks.push(playlistTrack);
     }
+
+    this.setState({ playlistTracks: updatedTracks });
+    console.log(updatedTracks);
   }
 
+  //**************************************************** */
   //A function for testing the removeTrack method. Should
   //be removed later.
   testRemoveTrack () {
-    this.removeTrack({ id: 1003 });
+    this.removeTrack({ id: 1000 });
   }
 
+  //************************************************* */
   render() {
     return (
       <div>
