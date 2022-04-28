@@ -50,8 +50,11 @@ class App extends React.Component {
     ]};
 
     this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
+    this.testRemoveTrack = this.testRemoveTrack.bind(this);
   }
 
+  //Adds a track to the playlist from the search results.
   addTrack (track) {
 
     if (this.state.playlistTracks.find(
@@ -69,9 +72,23 @@ class App extends React.Component {
     }
   }
 
+  //Removes a track from the playlist.
+  removeTrack (track) {
+    for (let playlistTrack of this.state.playlistTracks) {
+      console.log(playlistTrack.id);
+    }
+  }
+
+  //A function for testing the removeTrack method. Should
+  //be removed later.
+  testRemoveTrack () {
+    this.removeTrack({ id: 1003 });
+  }
+
   render() {
     return (
       <div>
+        <button onClick={this.testRemoveTrack}>Test button</button>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
           <SearchBar />
