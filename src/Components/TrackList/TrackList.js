@@ -7,6 +7,8 @@ export class TrackList extends React.Component {
         const tracks = this.props.tracks;
         let formattedTracks = '';
 
+        let num = 0;
+
         if (tracks === undefined)
         {
             formattedTracks = <p>-------------------</p>;
@@ -18,7 +20,8 @@ export class TrackList extends React.Component {
             trackAlbum={x.TrackAlbum}
             isRemoval={this.props.isRemoval}
             id={x.id}
-            onAdd={this.props.onAdd} />);
+            onAdd={this.props.onAdd}
+            key={num++} />);
         }
 
         //console.log(tracks);
