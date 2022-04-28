@@ -5,7 +5,6 @@ import { SearchBar } from '../SearchBar/SearchBar';
 import { SearchResults } from '../SearchResults/SearchResults';
 import { Playlist } from '../Playlist/Playlist';
 
-
 class App extends React.Component {
   constructor (props) {
     super(props);
@@ -49,6 +48,25 @@ class App extends React.Component {
         id: 1005
       }
     ]};
+
+    this.addTrack = this.addTrack.bind(this);
+  }
+
+  addTrack (track) {
+
+    if (this.state.playlistTracks.find(
+      playlistTrack => playlistTrack.id === track.id))
+    {
+      //Track is already present.
+      return;
+    }
+    else {
+      //Track is NOT present.
+      let tempPlaylistTracks = this.state.playlistTracks;
+      tempPlaylistTracks.push(track);
+
+      this.setState({ playlistTracks: tempPlaylistTracks });
+    }
   }
 
   render() {
@@ -58,7 +76,8 @@ class App extends React.Component {
         <div className="App">
           <SearchBar />
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults}/>
+            <SearchResults searchResults={this.state.searchResults}
+            onAdd={this.addTrack} />
             <Playlist playlistName={this.state.playlistName}
             playlistTracks={this.state.playlistTracks}
             />
