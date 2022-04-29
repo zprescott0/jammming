@@ -52,7 +52,6 @@ class App extends React.Component {
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
-    this.testUpdatePlaylistName = this.testUpdatePlaylistName.bind(this);
   }
 
   //************************************************ */
@@ -95,21 +94,9 @@ class App extends React.Component {
   }
 
   //************************************************* */
-  //Tests the updatePlaylistName method. Should be deleted
-  //later.
-  testUpdatePlaylistName () {
-    this.updatePlaylistName('New Playlist Name');
-  }
-
-  //************************************************* */
   render() {
     return (
       <div>
-        <button 
-        onClick={() => {console.log(this.state.playlistName);}}>
-          Log playlistName
-        </button>
-        <button onClick={this.testUpdatePlaylistName}>Change playlist name</button>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
           <SearchBar />
