@@ -51,7 +51,6 @@ class App extends React.Component {
 
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
-    this.testRemoveTrack = this.testRemoveTrack.bind(this);
   }
 
   //************************************************ */
@@ -85,21 +84,12 @@ class App extends React.Component {
     }
 
     this.setState({ playlistTracks: updatedTracks });
-    console.log(updatedTracks);
-  }
-
-  //**************************************************** */
-  //A function for testing the removeTrack method. Should
-  //be removed later.
-  testRemoveTrack () {
-    this.removeTrack({ id: 1000 });
   }
 
   //************************************************* */
   render() {
     return (
       <div>
-        <button onClick={this.testRemoveTrack}>Test button</button>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
           <SearchBar />
