@@ -58,6 +58,7 @@ class App extends React.Component {
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
+    this.savePlaylist = this.savePlaylist.bind(this);
   }
 
   //************************************************ */
@@ -99,6 +100,18 @@ class App extends React.Component {
     this.setState({ playlistName: name });
   }
 
+  //************************************************** */
+  //Saves an array of tracks and a playlist name to a user's
+  //Spotify account.
+  savePlaylist() {
+    const trackURIs = [];
+    for (let track of this.state.playlistTracks) {
+      trackURIs.push(track.uri);
+    }
+
+    console.log(trackURIs);
+  }
+
   //************************************************* */
   render() {
     return (
@@ -112,7 +125,8 @@ class App extends React.Component {
             <Playlist playlistName={this.state.playlistName}
             playlistTracks={this.state.playlistTracks}
             onRemove={this.removeTrack}
-            onNameChange={this.updatePlaylistName} />
+            onNameChange={this.updatePlaylistName}
+            onSave={this.savePlaylist} />
           </div>
         </div>
       </div>
