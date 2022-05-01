@@ -59,6 +59,7 @@ class App extends React.Component {
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
+    this.search = this.search.bind(this);
   }
 
   //************************************************ */
@@ -110,6 +111,13 @@ class App extends React.Component {
     }
 
     console.log(trackURIs);
+  }
+
+  //************************************************** */
+  //Updates the search results with a response from
+  //Spotify.
+  search (searchTerm) {
+    console.log(searchTerm);
   }
 
   //************************************************* */
