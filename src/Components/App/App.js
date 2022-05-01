@@ -12,19 +12,22 @@ class App extends React.Component {
       TrackName: 'Track Name 1',
       TrackArtist: 'Track Artist 1',
       TrackAlbum: 'Track Album 1',
-      id: 1000
+      id: 1000,
+      uri: 'qwer'
     }, 
     {
       TrackName: 'Track Name 2',
       TrackArtist: 'Track Artist 2',
       TrackAlbum: 'Track Album 2',
-      id: 1001
+      id: 1001,
+      uri: 'asdf'
     }, 
     {
       TrackName: 'Track Name 3',
       TrackArtist: 'Track Artist 3',
       TrackAlbum: 'Track Album 3',
-      id: 1002
+      id: 1002,
+      uri: 'zxcv'
     }
       ],
     playlistName: 'DEBUG Playlist',
@@ -33,25 +36,29 @@ class App extends React.Component {
         TrackName: 'Track Name 4',
         TrackArtist: 'Track Artist 4',
         TrackAlbum: 'Track Album 4',
-        id: 1003
+        id: 1003,
+        uri: 'tyui'
       }, 
       {
         TrackName: 'Track Name 5',
         TrackArtist: 'Track Artist 5',
         TrackAlbum: 'Track Album 5',
-        id: 1004
+        id: 1004,
+        uri: 'ghjk'
       }, 
       {
         TrackName: 'Track Name 6',
         TrackArtist: 'Track Artist 6',
         TrackAlbum: 'Track Album 6',
-        id: 1005
+        id: 1005,
+        uri: 'bnmm'
       }
     ]};
 
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
+    this.savePlaylist = this.savePlaylist.bind(this);
   }
 
   //************************************************ */
@@ -93,6 +100,18 @@ class App extends React.Component {
     this.setState({ playlistName: name });
   }
 
+  //************************************************** */
+  //Saves an array of tracks and a playlist name to a user's
+  //Spotify account.
+  savePlaylist() {
+    const trackURIs = [];
+    for (let track of this.state.playlistTracks) {
+      trackURIs.push(track.uri);
+    }
+
+    console.log(trackURIs);
+  }
+
   //************************************************* */
   render() {
     return (
@@ -106,7 +125,8 @@ class App extends React.Component {
             <Playlist playlistName={this.state.playlistName}
             playlistTracks={this.state.playlistTracks}
             onRemove={this.removeTrack}
-            onNameChange={this.updatePlaylistName} />
+            onNameChange={this.updatePlaylistName}
+            onSave={this.savePlaylist} />
           </div>
         </div>
       </div>
