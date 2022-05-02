@@ -4,6 +4,7 @@ import { ReactComment } from '../Other/HTMLComment';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { SearchResults } from '../SearchResults/SearchResults';
 import { Playlist } from '../Playlist/Playlist';
+import { Spotify } from '../../util/Spotify';
 
 class App extends React.Component {
   constructor (props) {
@@ -124,6 +125,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <button onClick={Spotify.getAccessToken}>Test</button>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
           <SearchBar onSearch={this.search} />
