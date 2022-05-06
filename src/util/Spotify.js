@@ -9,6 +9,7 @@ const Spotify = {
         else {
             //User Access Token is not set. Authorization needed.
             const url = new URL(window.location.href);
+            //const url = new URL('http://www.testurl.com/my/path#access_token=qWeR&expires_in=5');
 
             const accessTokenRegex = /access_token=([^&]*)/;
             const expiresInRegex = /expires_in=([^&]*)/;
@@ -19,6 +20,11 @@ const Spotify = {
             if (capturedAccessToken !== null) {
                 userAccessToken = capturedAccessToken[1];
                 expireTime = capturedExpiredValue[1];
+
+                setTimeout(() => {
+                    userAccessToken = '';
+                }, expireTime * 1000);
+                window.history.pushState('Access Token', '', '/');
             }
         }
     }
