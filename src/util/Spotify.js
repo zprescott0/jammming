@@ -30,7 +30,10 @@ const Spotify = {
                 window.history.pushState('Access Token', '', '/');
             }
             else {
-                console.log('There\'s no token!');
+                const baseURL = 'https://accounts.spotify.com/authorize';
+                const queryParameters = `?client_id=${CLIENT_ID}&response_type=token&scope=playlist-modify-public&redirect_uri=${REDIRECT_URI}`;
+                const URL = `${baseURL}${queryParameters}`;
+                window.location = URL;
             }
         }
     }
