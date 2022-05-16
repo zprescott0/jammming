@@ -1,3 +1,6 @@
+const REDIRECT_URI = 'http://localhost:3000/';
+const CLIENT_ID = '71ed11cd1119442890ce8a673afa6305';
+
 let userAccessToken = '';
 let expireTime = 0;
 
@@ -25,6 +28,9 @@ const Spotify = {
                     userAccessToken = '';
                 }, expireTime * 1000);
                 window.history.pushState('Access Token', '', '/');
+            }
+            else {
+                console.log('There\'s no token!');
             }
         }
     }
