@@ -36,7 +36,19 @@ const Spotify = {
                 window.location = URL;
             }
         }
+    },
+
+    search: (searchTerm) => {
+        return new Promise((resolve, reject) => {
+            if (searchTerm.length > 5) {
+                resolve('Length greater than 5.');
+            }
+            else {
+                reject('Length 5 or lower.');
+            }
+        });
     }
+
 };
 
 export { Spotify };
