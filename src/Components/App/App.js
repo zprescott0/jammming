@@ -118,7 +118,14 @@ class App extends React.Component {
   //Updates the search results with a response from
   //Spotify.
   search (searchTerm) {
-    console.log(searchTerm);
+    //console.log(searchTerm);
+    Spotify.search(searchTerm).then((resolveValue) => {
+      console.log('Resolved.');
+      console.log(resolveValue);
+    }).catch((rejectValue) => {
+      console.error('Rejected.');
+      console.error(rejectValue);
+    });
   }
 
   //************************************************* */
