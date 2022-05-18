@@ -40,7 +40,8 @@ const Spotify = {
         }
     },
 
-    search: (searchTerm) => {
+    search: async (searchTerm) => {
+        /*
         return new Promise((resolve, reject) => {
             let searchResults = [];
             if (!(userAccessToken)) {
@@ -48,7 +49,10 @@ const Spotify = {
             }
 
             resolve(userAccessToken);
-        });
+        });*/
+
+        const endPoint = 'https://api.spotify.com/v1/search';
+        const queryParameters = '?type=track';
     }
 
 };
