@@ -28,6 +28,8 @@ const Spotify = {
                     userAccessToken = '';
                 }, expireTime * 1000);
                 window.history.pushState('Access Token', '', '/');
+
+                return userAccessToken;
             }
             else {
                 const baseURL = 'https://accounts.spotify.com/authorize';
@@ -40,12 +42,12 @@ const Spotify = {
 
     search: (searchTerm) => {
         return new Promise((resolve, reject) => {
-            if (searchTerm.length > 5) {
-                resolve('Length greater than 5.');
+            let searchResults = [];
+            if (!(userAccessToken)) {
+                Spotify.getAccessToken();
             }
-            else {
-                reject('Length 5 or lower.');
-            }
+
+            resolve(userAccessToken);
         });
     }
 
