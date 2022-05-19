@@ -51,8 +51,19 @@ const Spotify = {
             resolve(userAccessToken);
         });*/
 
-        const endPoint = 'https://api.spotify.com/v1/search';
+        const baseURL = 'https://api.spotify.com/v1/search';
         const queryParameters = '?type=track';
+        const endPoint = baseURL + queryParameters;
+
+        const options = {
+            headers: {
+                Authorization: `Bearer ${userAccessToken}`
+            }
+        };
+
+        const response = await fetch(endPoint, options);
+
+        return response;
     }
 
 };
