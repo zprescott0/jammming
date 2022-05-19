@@ -41,18 +41,20 @@ const Spotify = {
     },
 
     search: async (searchTerm) => {
-        /*
-        return new Promise((resolve, reject) => {
-            let searchResults = [];
-            if (!(userAccessToken)) {
-                Spotify.getAccessToken();
+
+        //Confirm access token is available.
+        if (!(userAccessToken)) {
+            Spotify.getAccessToken();
+            
+            //Prevents program from sending request if accessToken is not available.
+            if ( !(userAccessToken) ) {
+                return;
             }
+        }
 
-            resolve(userAccessToken);
-        });*/
-
+        //Set up request.
         const baseURL = 'https://api.spotify.com/v1/search';
-        const queryParameters = '?type=track';
+        const queryParameters = `?type=track&q=${searchTerm}`;
         const endPoint = baseURL + queryParameters;
 
         const options = {
@@ -61,9 +63,15 @@ const Spotify = {
             }
         };
 
+        //Obtain data from Spotify
         const response = await fetch(endPoint, options);
-
-        return response;
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            return jsonResponse;
+        }
+        else {
+            return 'Error in request';
+        }
     }
 
 };
