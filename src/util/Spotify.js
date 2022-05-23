@@ -85,6 +85,14 @@ const Spotify = {
         else {
             throw new Error('Error in request.');
         }
+    },
+
+    savePlaylist: (playlistName, trackURIs) => {
+        //GET current user id.
+
+        //Post new playlist and get back playlist id.
+
+        //Send track URIs to newly created playlist.
     }
 
 };
