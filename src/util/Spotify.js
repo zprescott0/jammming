@@ -28,6 +28,8 @@ const Spotify = {
                     userAccessToken = '';
                 }, expireTime * 1000);
                 window.history.pushState('Access Token', '', '/');
+
+                return userAccessToken;
             }
             else {
                 const baseURL = 'https://accounts.spotify.com/authorize';
@@ -36,7 +38,55 @@ const Spotify = {
                 window.location = URL;
             }
         }
+    },
+
+    search: async (searchTerm) => {
+
+        //Confirm access token is available.
+        if (!(userAccessToken)) {
+            Spotify.getAccessToken();
+            
+            //Prevents program from sending request if accessToken is not available.
+            if ( !(userAccessToken) ) {
+                return;
+            }
+        }
+
+        //Set up request.
+        const baseURL = 'https://api.spotify.com/v1/search';
+        const queryParameters = `?type=track&q=${searchTerm}`;
+        const endPoint = baseURL + queryParameters;
+
+        const options = {
+            headers: {
+                Authorization: `Bearer ${userAccessToken}`
+            }
+        };
+
+        //Obtain data from Spotify
+        const response = await fetch(endPoint, options);
+        if (response.ok) {
+            const jsonResponse = await response.json();
+
+            //Convert data into a usable format
+            let searchedTracks = [];
+            for (let track of jsonResponse.tracks.items) {
+                searchedTracks.push({
+                    id: track.id,
+                    TrackName: track.name,
+                    TrackArtist: track.artists[0].name,
+                    TrackAlbum: track.album.name,
+                    uri: track.uri
+                });
+            }
+
+            return searchedTracks;
+        }
+        else {
+            throw new Error('Error in request.');
+        }
     }
+
 };
 
 export { Spotify };
