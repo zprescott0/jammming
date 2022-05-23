@@ -67,10 +67,23 @@ const Spotify = {
         const response = await fetch(endPoint, options);
         if (response.ok) {
             const jsonResponse = await response.json();
-            return jsonResponse;
+
+            //Convert data into a usable format
+            let searchedTracks = [];
+            for (let track of jsonResponse.tracks.items) {
+                searchedTracks.push({
+                    id: track.id,
+                    TrackName: track.name,
+                    TrackArtist: track.artists[0].name,
+                    TrackAlbum: track.album.name,
+                    uri: track.uri
+                });
+            }
+
+            return searchedTracks;
         }
         else {
-            return 'Error in request';
+            throw new Error('Error in request.');
         }
     }
 

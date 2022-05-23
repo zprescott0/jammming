@@ -121,7 +121,12 @@ class App extends React.Component {
     //console.log(searchTerm);
     Spotify.search(searchTerm).then((resolveValue) => {
       console.log('Resolved.');
-      console.log(resolveValue);
+      //console.log(resolveValue);
+      if (resolveValue === undefined)
+        return;
+      else {
+        this.setState({ searchResults: resolveValue});
+      }
     }).catch((rejectValue) => {
       console.error('Rejected.');
       console.error(rejectValue);
