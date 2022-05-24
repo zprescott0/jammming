@@ -65,15 +65,11 @@ class App extends React.Component {
   //Spotify account.
   savePlaylist() {
     const trackURIs = [];
-    const tracks = [];
     for (let track of this.state.playlistTracks) {
       trackURIs.push(track.uri);
-      tracks.push(track);
     }
 
-    console.log(this.state.playlistName);
-    console.log(trackURIs);
-    console.log(tracks);
+    Spotify.savePlaylist(this.state.playlistName, trackURIs);
   }
 
   //************************************************** */

@@ -88,6 +88,9 @@ const Spotify = {
     },
 
     savePlaylist: (playlistName, trackURIs) => {
+        console.log('Playlist name: ' + playlistName);
+        console.log(trackURIs);
+
         //GET current user id.
 
         //Post new playlist and get back playlist id.
