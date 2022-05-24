@@ -87,7 +87,7 @@ const Spotify = {
         }
     },
 
-    savePlaylist: (playlistName, trackURIs) => {
+    savePlaylist: async (playlistName, trackURIs) => {
         //Check if there are values saved to the parameters:
         if (playlistName === '' || trackURIs.length === 0) {
             return;
@@ -100,11 +100,9 @@ const Spotify = {
         };
         let userID = '';
 
-        console.log(`Access token: ${accessToken}`);
-        console.log(requestHeaders);
-        console.log(`User ID: ${userID}`);
-
         //GET current user id.
+        const response = await fetch('https://api.spotify.com/v1/me', { headers: requestHeaders });
+        console.log(response);
 
         //Post new playlist and get back playlist id.
 
