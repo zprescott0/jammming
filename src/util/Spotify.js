@@ -102,7 +102,15 @@ const Spotify = {
 
         //GET current user id.
         const response = await fetch('https://api.spotify.com/v1/me', { headers: requestHeaders });
-        console.log(response);
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            userID = jsonResponse.id;
+        }
+        else {
+            throw new Error('Error in request to get user ID.');
+        }
+
+        console.log(userID);
 
         //Post new playlist and get back playlist id.
 
