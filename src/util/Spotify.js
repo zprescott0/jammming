@@ -88,13 +88,21 @@ const Spotify = {
     },
 
     savePlaylist: (playlistName, trackURIs) => {
-        console.log('Playlist name: ' + playlistName);
-        console.log(trackURIs);
-
         //Check if there are values saved to the parameters:
         if (playlistName === '' || trackURIs.length === 0) {
             return;
         }
+
+        //Set variables for request.
+        let accessToken = userAccessToken;
+        const requestHeaders = {
+            Authorization: `Bearer ${accessToken}`
+        };
+        let userID = '';
+
+        console.log(`Access token: ${accessToken}`);
+        console.log(requestHeaders);
+        console.log(`User ID: ${userID}`);
 
         //GET current user id.
 
