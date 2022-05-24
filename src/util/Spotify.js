@@ -91,6 +91,11 @@ const Spotify = {
         console.log('Playlist name: ' + playlistName);
         console.log(trackURIs);
 
+        //Check if there are values saved to the parameters:
+        if (playlistName === '' || trackURIs.length === 0) {
+            return;
+        }
+
         //GET current user id.
 
         //Post new playlist and get back playlist id.
