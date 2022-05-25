@@ -40,6 +40,7 @@ const Spotify = {
         }
     },
 
+    //********************************************************************** */
     search: async (searchTerm) => {
 
         //Confirm access token is available.
@@ -87,6 +88,7 @@ const Spotify = {
         }
     },
 
+    //************************************************************* */
     savePlaylist: async (playlistName, trackURIs) => {
         //Check if there are values saved to the parameters:
         if (playlistName === '' || trackURIs.length === 0) {
@@ -100,7 +102,7 @@ const Spotify = {
         };
         let userID = '';
 
-        //GET current user id.
+        //1. GET current user id.
         const response = await fetch('https://api.spotify.com/v1/me', { headers: requestHeaders });
         if (response.ok) {
             const jsonResponse = await response.json();
@@ -110,11 +112,18 @@ const Spotify = {
             throw new Error('Error in request to get user ID.');
         }
 
-        console.log(userID);
+        //2. Post new playlist and get back playlist id.
+        const url2 = `https://api.spotify.com/v1/users/${userID}/playlists`;
+        const body = {
+            name: playlistName,
+            public: false,
+            description: 'A practice playlist to be deleted later.'
+        };
 
-        //Post new playlist and get back playlist id.
+        console.log(url2);
+        console.log(body);
 
-        //Send track URIs to newly created playlist.
+        //3. Send track URIs to newly created playlist.
     }
 
 };
