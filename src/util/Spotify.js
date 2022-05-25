@@ -33,7 +33,7 @@ const Spotify = {
             }
             else {
                 const baseURL = 'https://accounts.spotify.com/authorize';
-                const queryParameters = `?client_id=${CLIENT_ID}&response_type=token&scope=playlist-modify-public&redirect_uri=${REDIRECT_URI}`;
+                const queryParameters = `?client_id=${CLIENT_ID}&response_type=token&scope=playlist-modify-private&redirect_uri=${REDIRECT_URI}`;
                 const URL = `${baseURL}${queryParameters}`;
                 window.location = URL;
             }
@@ -114,14 +114,29 @@ const Spotify = {
 
         //2. Post new playlist and get back playlist id.
         const url2 = `https://api.spotify.com/v1/users/${userID}/playlists`;
-        const body = {
+        const body2 = {
             name: playlistName,
             public: false,
             description: 'A practice playlist to be deleted later.'
         };
 
-        console.log(url2);
-        console.log(body);
+        const response2 = await fetch(url2, {
+            method: 'POST',
+            headers: requestHeaders,
+            body: JSON.stringify(body2)
+        });
+
+        if (response2.ok) {
+            const jsonResponse2 = await response2.json();
+            const playlistID = jsonResponse2.id;
+            console.log(jsonResponse2);
+            console.log(playlistID);
+        }
+        else {
+            console.error(response2);
+            console.error(await response2.json());
+            throw new Error('Error when creating playlist');
+        }
 
         //3. Send track URIs to newly created playlist.
     }
