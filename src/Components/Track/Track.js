@@ -16,7 +16,8 @@ export class Track extends React.Component {
             TrackName: this.props.trackName,
             TrackArtist: this.props.trackArtist,
             TrackAlbum: this.props.trackAlbum,
-            id: this.props.id
+            id: this.props.id,
+            uri: this.props.uri
         } );
     }
 

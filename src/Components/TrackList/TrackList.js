@@ -20,6 +20,7 @@ export class TrackList extends React.Component {
             trackAlbum={x.TrackAlbum}
             isRemoval={this.props.isRemoval}
             id={x.id}
+            uri={x.uri}
             onAdd={this.props.onAdd}
             onRemove={this.props.onRemove}
             key={num++} />);

@@ -11,30 +11,8 @@ class App extends React.Component {
     super(props);
     this.state = { 
       searchResults: [],
-      playlistName: 'DEBUG Playlist',
-      playlistTracks: [
-      {
-        TrackName: 'Track Name 4',
-        TrackArtist: 'Track Artist 4',
-        TrackAlbum: 'Track Album 4',
-        id: 1003,
-        uri: 'tyui'
-      }, 
-      {
-        TrackName: 'Track Name 5',
-        TrackArtist: 'Track Artist 5',
-        TrackAlbum: 'Track Album 5',
-        id: 1004,
-        uri: 'ghjk'
-      }, 
-      {
-        TrackName: 'Track Name 6',
-        TrackArtist: 'Track Artist 6',
-        TrackAlbum: 'Track Album 6',
-        id: 1005,
-        uri: 'bnmm'
-      }
-    ]};
+      playlistName: 'New Playlist',
+      playlistTracks: []};
 
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
@@ -86,12 +64,18 @@ class App extends React.Component {
   //Saves an array of tracks and a playlist name to a user's
   //Spotify account.
   savePlaylist() {
+    //Obtain track URIs.
     const trackURIs = [];
     for (let track of this.state.playlistTracks) {
       trackURIs.push(track.uri);
     }
 
-    console.log(trackURIs);
+    //Save playlist to Spotify.
+    Spotify.savePlaylist(this.state.playlistName, trackURIs);
+
+    //Reset state.
+    this.setState({ playlistName: 'New Playlist ',
+    playlistTracks: []});
   }
 
   //************************************************** */
