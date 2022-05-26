@@ -64,12 +64,18 @@ class App extends React.Component {
   //Saves an array of tracks and a playlist name to a user's
   //Spotify account.
   savePlaylist() {
+    //Obtain track URIs.
     const trackURIs = [];
     for (let track of this.state.playlistTracks) {
       trackURIs.push(track.uri);
     }
 
+    //Save playlist to Spotify.
     Spotify.savePlaylist(this.state.playlistName, trackURIs);
+
+    //Reset state.
+    this.setState({ playlistName: 'New Playlist ',
+    playlistTracks: []});
   }
 
   //************************************************** */
