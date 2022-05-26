@@ -96,7 +96,7 @@ const Spotify = {
         }
 
         //Set variables for request.
-        let accessToken = userAccessToken;
+        let accessToken = Spotify.getAccessToken();
         const requestHeaders = {
             Authorization: `Bearer ${accessToken}`
         };
@@ -117,8 +117,9 @@ const Spotify = {
         const body2 = {
             name: playlistName,
             public: false,
-            description: 'A practice playlist to be deleted later.'
+            description: 'A playlist created through the jammming app.'
         };
+        let playlistID = '';
 
         const response2 = await fetch(url2, {
             method: 'POST',
@@ -128,9 +129,7 @@ const Spotify = {
 
         if (response2.ok) {
             const jsonResponse2 = await response2.json();
-            const playlistID = jsonResponse2.id;
-            console.log(jsonResponse2);
-            console.log(playlistID);
+            playlistID = jsonResponse2.id;
         }
         else {
             console.error(response2);
@@ -139,6 +138,24 @@ const Spotify = {
         }
 
         //3. Send track URIs to newly created playlist.
+        const url3 = `https://api.spotify.com/v1/playlists/${playlistID}/tracks`;
+        const body3 = {
+            uris: trackURIs
+        };
+
+        const response3 = await fetch(url3, {
+            method: 'POST',
+            headers: requestHeaders,
+            body: JSON.stringify(body3)
+        });
+
+        if (response3.ok) {
+            return 'Success';
+        }
+        else {
+            console.error(await response3.json());
+            throw new Error('Error when saving tracks to playlist.');
+        }
     }
 
 };
