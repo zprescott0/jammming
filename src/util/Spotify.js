@@ -65,13 +65,15 @@ const Spotify = {
             }
         };
 
+        let searchedTracks = [];    //Will hold objects with the desired information from Spotify.
+        let idArray = [];   //Holds the ids of every track. Needed to obtain preview urls.
+
         //Obtain data from Spotify
         const response = await fetch(endPoint, options);
         if (response.ok) {
             const jsonResponse = await response.json();
 
             //Convert data into a usable format
-            let searchedTracks = [];
             for (let track of jsonResponse.tracks.items) {
                 searchedTracks.push({
                     id: track.id,
@@ -81,12 +83,14 @@ const Spotify = {
                     uri: track.uri
                 });
             }
-
-            return searchedTracks;
         }
         else {
             throw new Error('Error in request.');
         }
+
+        //Another response is sent to obtain the previews of each song
+        const baseURL2 = 'http://api.spotify.com/v1/tracks';
+        return searchedTracks;
     },
 
     //************************************************************* */
