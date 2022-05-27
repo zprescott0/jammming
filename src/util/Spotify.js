@@ -82,6 +82,7 @@ const Spotify = {
                     TrackAlbum: track.album.name,
                     uri: track.uri
                 });
+                idArray.push(track.id);
             }
         }
         else {
@@ -90,6 +91,9 @@ const Spotify = {
 
         //Another response is sent to obtain the previews of each song
         const baseURL2 = 'http://api.spotify.com/v1/tracks';
+
+        console.log(searchedTracks);
+        console.log(idArray);
         return searchedTracks;
     },
 
