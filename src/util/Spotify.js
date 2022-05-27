@@ -1,4 +1,5 @@
 const REDIRECT_URI = 'http://localhost:3000/';
+//const REDIRECT_URI = 'http://zprescott-jammming.surge.sh';
 const CLIENT_ID = '71ed11cd1119442890ce8a673afa6305';
 
 let userAccessToken = '';
