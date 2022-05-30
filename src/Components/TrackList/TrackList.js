@@ -21,12 +21,11 @@ export class TrackList extends React.Component {
             isRemoval={this.props.isRemoval}
             id={x.id}
             uri={x.uri}
+            preview_url={x.preview_url}
             onAdd={this.props.onAdd}
             onRemove={this.props.onRemove}
             key={num++} />);
         }
-
-        //console.log(tracks);
 
         return (
             <div className="TrackList">

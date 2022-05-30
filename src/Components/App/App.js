@@ -85,6 +85,7 @@ class App extends React.Component {
       if (resolveValue === undefined)
         return;
       else {
+        console.log(resolveValue);
         this.setState({ searchResults: resolveValue});
       }
     }).catch((rejectValue) => {

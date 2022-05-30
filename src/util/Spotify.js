@@ -109,8 +109,6 @@ const Spotify = {
             return;
         }
 
-        console.log(searchedTracks);
-
         return searchedTracks;
     },
 
