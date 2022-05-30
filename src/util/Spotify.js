@@ -89,11 +89,28 @@ const Spotify = {
             throw new Error('Error in request.');
         }
 
-        //Another response is sent to obtain the previews of each song
-        const baseURL2 = 'http://api.spotify.com/v1/tracks';
+        //Another request is sent to obtain the previews of each song.
+        const baseURL2 = 'https://api.spotify.com/v1/tracks';
+        const query2 = `?ids=${idArray.join(',')}`;
+        const endpoint2 = `${baseURL2}${query2}`;
+
+        //Send request
+        const response2 = await fetch(endpoint2, options);
+        if (response2.ok) {
+            const jsonResponse2 = await response2.json();
+
+            for (let i = 0; i < jsonResponse2.tracks.length; i++) {
+                searchedTracks[i].preview_url = jsonResponse2.tracks[i].preview_url;
+            }
+        } 
+        else {
+            console.error('Error when obtaining song previews.');
+            console.error(await response2.json());
+            return;
+        }
 
         console.log(searchedTracks);
-        console.log(idArray);
+
         return searchedTracks;
     },
 
