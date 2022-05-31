@@ -3,6 +3,10 @@
     align-items: center;
     border-bottom: 1px solid rgba(256, 256, 256, 0.8);
   }
+
+  .Track * {
+    margin-bottom: 8px;
+  }
   
   .Track-action {
     cursor: pointer;
@@ -23,7 +27,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 72px;
+    height: 90px;
   }
   
   .Track-information h3 {
@@ -35,3 +39,7 @@
     font-weight: 300;
     color: rgba(256, 256, 256, 0.8);
   }
+
+.Track-preview {
+  color: rgba(256, 256, 256, 0.8);
+}

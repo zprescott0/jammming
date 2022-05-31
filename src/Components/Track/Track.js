@@ -52,7 +52,8 @@ export class Track extends React.Component {
             console.log('No preview for track: ' + this.props.TrackName);
         }
 
-        return <a href="www.google.com">Test link</a>;
+        return <a href="https://www.google.com"
+        className="Track-preview">Test link</a>;
     }
 
     render() {
