@@ -17,7 +17,8 @@ export class Track extends React.Component {
             TrackArtist: this.props.trackArtist,
             TrackAlbum: this.props.trackAlbum,
             id: this.props.id,
-            uri: this.props.uri
+            uri: this.props.uri,
+            preview_url: this.props.preview_url
         } );
     }
 
@@ -45,6 +46,15 @@ export class Track extends React.Component {
         }
     }
 
+    //Returns a link to the song preview.
+    renderPreview () {
+        if (this.props.preview_url === null) {
+            console.log('No preview for track: ' + this.props.TrackName);
+        }
+
+        return <a href="www.google.com">Test link</a>;
+    }
+
     render() {
         return (
             <div className="Track">
@@ -53,6 +63,8 @@ export class Track extends React.Component {
                     <p>{this.props.trackArtist} | {this.props.trackAlbum}</p>
                 </div>
                 {this.renderAction()}
+                <br />
+                {this.renderPreview()}
             </div>
         );
     }
