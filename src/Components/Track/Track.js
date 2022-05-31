@@ -61,10 +61,9 @@ export class Track extends React.Component {
                 <div className="Track-information">
                     <h3>{this.props.trackName}</h3>
                     <p>{this.props.trackArtist} | {this.props.trackAlbum}</p>
+                    {this.renderPreview()}
                 </div>
                 {this.renderAction()}
-                <br />
-                {this.renderPreview()}
             </div>
         );
     }
