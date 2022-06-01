@@ -49,11 +49,12 @@ export class Track extends React.Component {
     //Returns a link to the song preview.
     renderPreview () {
         if (this.props.preview_url === null) {
-            console.log('No preview for track: ' + this.props.TrackName);
+            return;
         }
 
-        return <a href="https://www.google.com"
-        className="Track-preview">Have a listen!</a>;
+        return <a href={this.props.preview_url}
+        className="Track-preview"
+        target="_blank">Have a listen!</a>;
     }
 
     render() {
