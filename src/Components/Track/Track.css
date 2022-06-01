@@ -3,6 +3,10 @@
     align-items: center;
     border-bottom: 1px solid rgba(256, 256, 256, 0.8);
   }
+
+  .Track * {
+    margin-bottom: 8px;
+  }
   
   .Track-action {
     cursor: pointer;
@@ -23,7 +27,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 72px;
+    height: 90px;
   }
   
   .Track-information h3 {
@@ -35,3 +39,21 @@
     font-weight: 300;
     color: rgba(256, 256, 256, 0.8);
   }
+
+.Track-preview {
+  color: rgba(256, 256, 256, 0.8);
+  background-color: rgb(15, 15, 15);
+  width: 40%;
+  padding: 5px 0px;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: padding .2s;
+  transition: background-color .2s;
+}
+
+.Track-preview:hover {
+  padding: 8px 3px;
+  background-color: rgb(40, 40, 40);
+}

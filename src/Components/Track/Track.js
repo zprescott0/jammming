@@ -17,7 +17,8 @@ export class Track extends React.Component {
             TrackArtist: this.props.trackArtist,
             TrackAlbum: this.props.trackAlbum,
             id: this.props.id,
-            uri: this.props.uri
+            uri: this.props.uri,
+            preview_url: this.props.preview_url
         } );
     }
 
@@ -45,12 +46,24 @@ export class Track extends React.Component {
         }
     }
 
+    //Returns a link to the song preview.
+    renderPreview () {
+        if (this.props.preview_url === null) {
+            return;
+        }
+
+        return <a href={this.props.preview_url}
+        className="Track-preview"
+        target="_blank">Have a listen!</a>;
+    }
+
     render() {
         return (
             <div className="Track">
                 <div className="Track-information">
                     <h3>{this.props.trackName}</h3>
                     <p>{this.props.trackArtist} | {this.props.trackAlbum}</p>
+                    {this.renderPreview()}
                 </div>
                 {this.renderAction()}
             </div>

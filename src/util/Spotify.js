@@ -1,4 +1,5 @@
 const REDIRECT_URI = 'http://localhost:3000/';
+//const REDIRECT_URI = 'http://zprescott-jammming.surge.sh';
 const CLIENT_ID = '71ed11cd1119442890ce8a673afa6305';
 
 let userAccessToken = '';
@@ -64,13 +65,15 @@ const Spotify = {
             }
         };
 
+        let searchedTracks = [];    //Will hold objects with the desired information from Spotify.
+        let idArray = [];   //Holds the ids of every track. Needed to obtain preview urls.
+
         //Obtain data from Spotify
         const response = await fetch(endPoint, options);
         if (response.ok) {
             const jsonResponse = await response.json();
 
             //Convert data into a usable format
-            let searchedTracks = [];
             for (let track of jsonResponse.tracks.items) {
                 searchedTracks.push({
                     id: track.id,
@@ -79,13 +82,34 @@ const Spotify = {
                     TrackAlbum: track.album.name,
                     uri: track.uri
                 });
+                idArray.push(track.id);
             }
-
-            return searchedTracks;
         }
         else {
             throw new Error('Error in request.');
         }
+
+        //Another request is sent to obtain the previews of each song.
+        const baseURL2 = 'https://api.spotify.com/v1/tracks';
+        const query2 = `?ids=${idArray.join(',')}`;
+        const endpoint2 = `${baseURL2}${query2}`;
+
+        //Send request
+        const response2 = await fetch(endpoint2, options);
+        if (response2.ok) {
+            const jsonResponse2 = await response2.json();
+
+            for (let i = 0; i < jsonResponse2.tracks.length; i++) {
+                searchedTracks[i].preview_url = jsonResponse2.tracks[i].preview_url;
+            }
+        } 
+        else {
+            console.error('Error when obtaining song previews.');
+            console.error(await response2.json());
+            return;
+        }
+
+        return searchedTracks;
     },
 
     //************************************************************* */

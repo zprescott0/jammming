@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import { ReactComment } from '../Other/HTMLComment';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { SearchResults } from '../SearchResults/SearchResults';
 import { Playlist } from '../Playlist/Playlist';
@@ -82,13 +81,11 @@ class App extends React.Component {
   //Updates the search results with a response from
   //Spotify.
   search (searchTerm) {
-    //console.log(searchTerm);
     Spotify.search(searchTerm).then((resolveValue) => {
-      console.log('Resolved.');
-      //console.log(resolveValue);
       if (resolveValue === undefined)
         return;
       else {
+        console.log(resolveValue);
         this.setState({ searchResults: resolveValue});
       }
     }).catch((rejectValue) => {
