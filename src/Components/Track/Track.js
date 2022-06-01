@@ -53,7 +53,7 @@ export class Track extends React.Component {
         }
 
         return <a href="https://www.google.com"
-        className="Track-preview">Test link</a>;
+        className="Track-preview">Have a listen!</a>;
     }
 
     render() {
